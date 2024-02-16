@@ -30,8 +30,9 @@ namespace Class05
 
         public void GameStart()
         {
+            //Loading()
             RollDice();
-            SwapValue();
+            SelectValue();
             ShowResult();
         }
 
@@ -54,7 +55,13 @@ namespace Class05
 
         public void SelectValue()
         {
-
+            // Yes 키워드를 저장하고 있는 버튼을 입력 Y() Swap해라 조건문
+            if (Console.ReadLine() == "Y")
+            {
+                SwapValue();
+            }
+            // Choice에 해당 하는 string 입력 시 변경한다.(Yes)
+            // No 입력 시 변경하지 않고 진행한다.
         }
 
 
