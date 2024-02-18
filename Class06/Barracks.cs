@@ -52,8 +52,32 @@ namespace Class06
             {
                 if(unit is Marine)
                 {
+                    // Nullable 연산자
+                    // 기본 문법: 데이터 타입?
+                    // 해당 데이터가 Null이 가능하게 선언해주는 연산자입니다.
+
                     Marine? marin = unit as Marine;
                     Console.WriteLine("실제로 마린을 생성하세요");
+
+                    // Null 조건부 연산자
+                    // 기본 문법: ?.
+                    // Null이 아닌것으로 평가되었을 때만 해당 클래스의 멤버에 접근하도록 하는 연산자이다.
+                    // if(Marine != null) Marine.Play();
+                    // => Marine?.Play(); 이런식으로 줄여서 사용할 수 있다.
+
+                    // Null 병합 연산자
+                    // 기본 문법: 대입할 변수 = 변수(A) ?? 변수(B)
+                    // A가 Null이 아니면 A를 넣고 A가 Null이면 B를 넣는다. 
+
+                    Unit unit2 = new Unit();
+
+                    if (unit is null)
+                    {
+                        unit = marin;
+                    }
+                    unit ??= marin;
+                  
+
                 }
             }
             // "F" 단어를 입력 받으면 파이어뱃을 생성합니다.
