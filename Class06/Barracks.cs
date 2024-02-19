@@ -32,7 +32,7 @@ namespace Class06
 
     class Building
     {
-
+        // 건물이 가져야 할 공통적인 데이터와 기능을 추가하여 클래스를 관리한다.
     }
 
     class Barracks : Building
@@ -50,14 +50,20 @@ namespace Class06
 
             if(Console.ReadLine() == "M")
             {
-                if(unit is Marine)
+                if(unit is Marine) // is 키워드를 사용하면, true 반환하고 false 반환한다.
                 {
-                    // Nullable 연산자
-                    // 기본 문법: 데이터 타입?
+                    // ? 연산자
+
+                    // Nullable 연산자: null이 될 수 있는 객체로 만들어 주는 연산자
+                    // 기본 문법: 데이터 타입? int? 변수 = null;
                     // 해당 데이터가 Null이 가능하게 선언해주는 연산자입니다.
 
-                    Marine? marin = unit as Marine;
+                    Marine? marin = unit as Marine; // as 키워드를 사용하면 형변환이 가능하면 해당 클래스로 형변환을 시켜주고 그것이 아니면 null을 반환한다.
                     Console.WriteLine("실제로 마린을 생성하세요");
+
+                    //marin. // 클래스 인스턴스. 클래스 멤버를 사용할 수 있다. public protected 선언한 멤버를 사용해주는 "."
+
+                    // null인 객체에 대해서 .를 통해 접근을 하면? 
 
                     // Null 조건부 연산자
                     // 기본 문법: ?.
@@ -65,7 +71,8 @@ namespace Class06
                     // if(Marine != null) Marine.Play();
                     // => Marine?.Play(); 이런식으로 줄여서 사용할 수 있다.
 
-                    // Null 병합 연산자
+                    // Null 병합 연산자 
+                    // ??
                     // 기본 문법: 대입할 변수 = 변수(A) ?? 변수(B)
                     // A가 Null이 아니면 A를 넣고 A가 Null이면 B를 넣는다. 
 
@@ -133,7 +140,7 @@ namespace Class06
 
     class Marine : Unit
     {
-        // 공격, 스킬
+        // 공격, 스킬, 움직인다, Stop, Hold, Patrol
     }
 
     class Firebat : Unit
