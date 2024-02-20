@@ -18,7 +18,12 @@
             unitManager.UnitAttackExecute();
 
             UnitManager ghostManager = new UnitManager(attack2);
-            ghostManager.UnitAttackExecute();            
+            ghostManager.UnitAttackExecute();
+
+            Console.WriteLine("2024.02.20 예시");
+
+            UserManager userManager = new UserManager();
+
         }
     }
 }

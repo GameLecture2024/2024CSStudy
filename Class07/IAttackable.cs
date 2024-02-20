@@ -55,16 +55,17 @@ namespace Class07
     {
         public UnitData unitData; // 클라이언트 내부의 데이터에서 직접 가져오거나, JSON , ScriptableObject 저장된 데이터를 불러와서 unitData;
 
-        private readonly IAttackable attack;
-
+        private readonly IAttackable attack; // Iattacble 상속받는 하위 클래스들을 담을 변수
+                                             // readonly : 외부에서 수정을 못하게 하기 위해서 선언하는 키워드
+                                             // 클래스가 생성되고 나서 내부에서만 수정이 되고 그 이후로는 수정이 불가능하다.
         public UnitManager(IAttackable attack)
         {
-            this.attack = attack;
+            this.attack = attack; // 클래스가 생성될 때 attack에 외부에서 받아온 IAttackable상속받는 클래스를 대입해주고, 이 이후로는 attack변수에 다른 데이터를 대입할 수 없게 된다.
         }
 
-        public void UnitAttackExecute()
+        public void UnitAttackExecute() // 수정에는 닫혀있다.
         {
-            attack.Attack("실제로 유닛이 공격하는 기능을 향 후에 만든다.");
+            attack.Attack("실제로 유닛이 공격하는 기능을 향 후에 만든다."); // Ghost, Marine 각각 자신의 메소드를 실행할 수 있는 것을 보았습니다.
         }
 
     }
