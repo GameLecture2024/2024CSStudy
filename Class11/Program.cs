@@ -61,16 +61,32 @@
     {
         static void Main(string[] args)
         {
-            DelegateExample delegateExample = new DelegateExample();
-            delegateExample.Execute();
+            //DelegateExample delegateExample = new DelegateExample();
+            //delegateExample.Execute();
 
-            Event_Class event_Class = new Event_Class();
-            event_Class.Main2();
+            //Event_Class event_Class = new Event_Class();
+            //event_Class.Main2();
 
-            for(int i=0; i<30; i ++)
-            {
-                event_Class.DoSomeThing(i);
-            }
+            //for(int i=0; i<30; i ++)
+            //{
+            //    event_Class.DoSomeThing(i);
+            //}
+
+            Bank bank = new Bank(1000);
+
+            Player player = new Player(500, bank.Balance);
+
+            bank.mydelegate += player.DecreasePlayerMoney;
+
+            bank.DecreaseBalance(300);
+
+            // delegate 은닉성을 보완해주기 위하여 제공되는 event의 기능
+            // event는 delegate의 기능을 제한해주기 위해서 제공되는 한정자
+            // event 선언된 delegate가 다른 클래스에서 직접 선언되어 사용되는 것을 막는 역할을 합니다.
+            //bank.mydelegate(100);
+
+            // bank.medelegate.Invoke();
+
         }
     }
 }
