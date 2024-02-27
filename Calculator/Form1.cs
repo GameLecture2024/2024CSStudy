@@ -43,7 +43,11 @@ namespace Calculator
 
         private void buttonresult_Click(object sender, EventArgs e)
         {
+            // 연산자 operator가 true된 후 display에 입력된 값을 저장하는 변수 : SecondValue
             secondValue = double.Parse(display.Text);
+
+            // firstValue, SecondValue 모두 갖고 있기 때문에 
+            // currentOperator 저장된 연산자를 처리해주면 된다.
 
             if(currentOperator == Operators.Add)
             {
@@ -64,6 +68,8 @@ namespace Calculator
             {
                 if(secondValue == 0)
                 {
+                    MessageBox.Show("첫번 째 데이터에는 알려줄 정보를 입력하는 내용", "메시지 박스의 제목을 입력", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                     MessageBox.Show("0으로 나눌 수 없습니다", "나누기 에러", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                     return;
                 }
@@ -174,7 +180,7 @@ namespace Calculator
         private void buttonDivide_Click(object sender, EventArgs e)
         {
             firstValue = double.Parse(display.Text);
-            currentOperator = Operators.Add;
+            currentOperator = Operators.Divide;
             operatorChangeFlag = true;
 
             explain.Text = display.Text + "÷";
@@ -192,6 +198,15 @@ namespace Calculator
                 display.Text += "0";
             }
 
+        }
+
+        private void buttonAllClear_Click(object sender, EventArgs e)
+        {
+            firstValue = 0;
+            secondValue = 0;
+            currentOperator = Operators.None;
+            display.Text = "0";
+            explain.Text = "0";
         }
     }
 }

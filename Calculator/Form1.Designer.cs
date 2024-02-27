@@ -126,6 +126,7 @@
             this.buttonAllClear.TabIndex = 12;
             this.buttonAllClear.Text = "AC";
             this.buttonAllClear.UseVisualStyleBackColor = true;
+            this.buttonAllClear.Click += new System.EventHandler(this.buttonAllClear_Click);
             // 
             // buttonMultiply
             // 
