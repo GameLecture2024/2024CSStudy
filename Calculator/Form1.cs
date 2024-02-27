@@ -17,10 +17,9 @@ namespace Calculator
         Operators currentOperator = Operators.None;
 
         bool operatorChangeFlag = false;
-
         double firstValue = 0;
-        double SecondeValue = 0;
-        double thirdValue = 0;
+        double secondValue = 0;
+
 
         public Form1()
         {
@@ -32,48 +31,9 @@ namespace Calculator
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
             ReturnStringToDouble("7");
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-            SecondeValue = double.Parse(display.Text);
-
-            // firstvalue 연산자 secondvalue 변수에 데이터들이 저장이 되어있습니다.
-
-            if(currentOperator == Operators.Add)
-            {
-
-            }
-            else if(currentOperator == Operators.Subtract)
-            {
-
-            }
-            else if (currentOperator == Operators.Multiply)
-            {
-
-            }
-            else if(currentOperator == Operators.Divide)
-            {
-                if(SecondeValue == 0)
-                {
-                    MessageBox.Show("0으로는 숫자를 나눌수 없습니다.", "나누기의 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                firstValue /= SecondeValue;
-                display.Text = firstValue.ToString();
-            }
-            else if(currentOperator == Operators.Result)
-            {
-                // 기존의 계산기 같은 경우에는 
-
-
-            }
-
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -81,85 +41,98 @@ namespace Calculator
             ReturnStringToDouble("8");
         }
 
-        private void button_9_Click(object sender, EventArgs e)
+        private void buttonresult_Click(object sender, EventArgs e)
         {
-            ReturnStringToDouble("9");
+            secondValue = double.Parse(display.Text);
+
+            if(currentOperator == Operators.Add)
+            {
+                firstValue += secondValue;
+                display.Text = firstValue.ToString();
+            }
+            else if(currentOperator == Operators.Subtract)
+            {
+                firstValue -= secondValue;
+                display.Text = firstValue.ToString();
+            }
+            else if(currentOperator == Operators.Multiply)
+            {
+                firstValue *= secondValue;
+                display.Text = firstValue.ToString();
+            }
+            else if(currentOperator == Operators.Divide)
+            {
+                if(secondValue == 0)
+                {
+                    MessageBox.Show("0으로 나눌 수 없습니다", "나누기 에러", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                    return;
+                }
+                else
+                {
+                    firstValue /= secondValue;
+                    display.Text = firstValue.ToString();
+                }
+            }
+            else if(currentOperator == Operators.Result)
+            {
+                MessageBox.Show("현재 버전에서는 결과 버튼으로 이전 데이터를 불러 올 수 없습니다", "연속된 결과 사용 불가능", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            currentOperator = Operators.Result;
+
+            explain.Text = firstValue.ToString();
         }
 
-        private void button_Plus_Click(object sender, EventArgs e)
-        {
-            firstValue = double.Parse(display.Text);
-            currentOperator = Operators.Add;
-            operatorChangeFlag = true;
-
-            explain.Text = display.Text + "＋";
-        }
-
-        private void button_4_Click(object sender, EventArgs e)
-        {
-            ReturnStringToDouble("4");
-        }
-
-        private void button_5_Click(object sender, EventArgs e)
-        {
-            ReturnStringToDouble("5");
-        }
-
-        private void button_6_Click(object sender, EventArgs e)
-        {
-            ReturnStringToDouble("6");
-        }
-
-        private void button_Minus_Click(object sender, EventArgs e)
-        {
-            firstValue = double.Parse(display.Text);
-            currentOperator = Operators.Subtract;
-            operatorChangeFlag = true;
-        }
-
-        private void button_1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             ReturnStringToDouble("1");
         }
 
-        private void button_2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             ReturnStringToDouble("2");
         }
 
-        private void button_3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             ReturnStringToDouble("3");
         }
 
-        private void button_Multiply_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            firstValue = double.Parse(display.Text);
-            currentOperator = Operators.Multiply;
-            operatorChangeFlag = true;
+            ReturnStringToDouble("4");
         }
 
-        private void button_AllClear_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-            firstValue = 0;
-            SecondeValue = 0;
-            currentOperator = Operators.None;
-            display.Text = "0";
+            ReturnStringToDouble("5");
         }
 
-        private void button_0_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-            if(operatorChangeFlag == true)
+            ReturnStringToDouble("6");
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            ReturnStringToDouble("9");
+        }
+
+        private void ReturnStringToDouble(string number)
+        {
+            if (operatorChangeFlag)
             {
-                display.Text = "0";
+                display.Text = "";
                 operatorChangeFlag = false;
             }
 
+            string result = display.Text += number;
 
-
+            display.Text = double.Parse(result).ToString();
         }
 
-        private void button_Dot_Click(object sender, EventArgs e)
+        private void buttonDot_Click(object sender, EventArgs e)
         {
             if (display.Text.Contains("."))
             {
@@ -171,28 +144,53 @@ namespace Calculator
             }
         }
 
-        private void button_Divide_Click(object sender, EventArgs e)
+        private void buttonPlus_Click(object sender, EventArgs e)
         {
             firstValue = double.Parse(display.Text);
-            currentOperator = Operators.Divide;
+            currentOperator = Operators.Add;
             operatorChangeFlag = true;
+
+            explain.Text = display.Text + "+";
         }
 
-        private void ReturnStringToDouble(string stringNumber)
+        private void buttonMinus_Click(object sender, EventArgs e)
         {
-            if (operatorChangeFlag)
+            firstValue = double.Parse(display.Text);
+            currentOperator = Operators.Subtract;
+            operatorChangeFlag = true;
+
+            explain.Text = display.Text + "-";
+        }
+
+        private void buttonMultiply_Click(object sender, EventArgs e)
+        {
+            firstValue = double.Parse(display.Text);
+            currentOperator = Operators.Multiply;
+            operatorChangeFlag = true;
+
+            explain.Text = display.Text + "×";
+        }
+
+        private void buttonDivide_Click(object sender, EventArgs e)
+        {
+            firstValue = double.Parse(display.Text);
+            currentOperator = Operators.Add;
+            operatorChangeFlag = true;
+
+            explain.Text = display.Text + "÷";
+        }
+
+        private void button0_Click(object sender, EventArgs e)
+        {
+            if(operatorChangeFlag == true || display.Text =="0")
             {
-                // 연산자 처리만 이루어 져야 되기 때문에
+                display.Text = "0";
                 operatorChangeFlag = false;
             }
-
-            string result = display.Text += stringNumber;
-            display.Text = double.Parse(result).ToString();
-
-        }
-
-        private void explain_Click(object sender, EventArgs e)
-        {
+            else
+            {
+                display.Text += "0";
+            }
 
         }
     }
