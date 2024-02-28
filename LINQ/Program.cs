@@ -71,8 +71,19 @@ namespace LINQ
                              orderby database.Money descending
                              // 3. 데이터의 정렬을 수행하는 연산자 입니다.
                              select new {Name = database.Name};
-                              // 4. select절은 최종 결과를 추출하여 database2에 데이터를 넣는 역할을 합니다.
+            // 4. select절은 최종 결과를 추출하여 database2에 데이터를 넣는 역할을 합니다.
 
+            LINQ_Example test = new LINQ_Example();
+
+            test.Example3();
+            test.Example4();
+
+            Console.WriteLine("아래 내용은 예제 5번 입니다");
+
+            test.Example5();
+
+            Console.WriteLine("아래 내용은 예제 6번 입니다");
+            test.Example6();
         }
     }
 
