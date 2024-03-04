@@ -124,56 +124,29 @@ namespace Database_Test
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            TextWriter writer = new StreamWriter(@"C:\Sample\Text.txt");
+            //TextWriter writer = new StreamWriter(@"C:\Sample\Text.txt");
 
-            for (int i = 0; i < dataGridViewInfo.Rows.Count - 1; i++)
-            {
-                for(int j = 0; j< dataGridViewInfo.Columns.Count; j++)
-                {
-                    writer.Write("\t" + dataGridViewInfo.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
-                }
-                writer.WriteLine();
-            }
+            //for (int i = 0; i < dataGridViewInfo.Rows.Count - 1; i++)
+            //{
+            //    for(int j = 0; j< dataGridViewInfo.Columns.Count; j++)
+            //    {
+            //        writer.Write("\t" + dataGridViewInfo.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+            //    }
+            //    writer.WriteLine();
+            //}
 
-            writer.Close();
-            MessageBox.Show("데이터가 출력되었음");
+            //writer.Close();
+
+            DataManager.SaveToJson(dataGridViewInfo, @"C:\Sample\SampeJson.json", listBox.Text);
+
+            MessageBox.Show("Json 데이터가 저장 되었음");
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            StreamReader reader = new StreamReader(@"C:\Sample\Text.txt");
-
-            string[] lines = File.ReadAllLines(@"C:\Sample\Text.txt");
-
-            // Seperator 어떤 것으로 하냐에 따라서 Format형식이 바뀐다.
-            dataGridViewInfo.ColumnCount = lines[0].Split('|').Length;
-
-            DataTable dt = new DataTable("1지역");
-            dt = new DataTable(listBox.Text);
+            DataTable dt = DataManager.LoadToJson(@"C:\Sample\SampeJson.json").dt;
+            dt.TableName = DataManager.LoadToJson(@"C:\Sample\SampeJson.json").tableName;
             ds.Tables.Add(dt);
-
-            DataColumn columnID = new DataColumn("ID", typeof(string));
-            DataColumn columnName = new DataColumn("Name", typeof(string));
-            DataColumn columnRace = new DataColumn("Race", typeof(string));
-            DataColumn columnRegion = new DataColumn("Region", typeof(string));
-
-            dt.Columns.Add(columnID);
-            dt.Columns.Add(columnName);
-            dt.Columns.Add(columnRace);
-            dt.Columns.Add(columnRegion);
-
-            foreach (string line in lines)
-            {
-                string[] values = line.Split('|');
-
-                DataRow row = dt.NewRow();
-                row["ID"] = values[0];
-                row["Name"] = values[1];
-                row["Race"] = values[2];
-                row["Region"] = values[3];
-
-                ds.Tables[listBox.Text].Rows.Add(row);
-            }
 
             ViewRefresh();
         }

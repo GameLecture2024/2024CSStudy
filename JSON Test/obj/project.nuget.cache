@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "h+aAWtiQoZ8/1H1vVbIrhG920m8veCz1/PDj0ygXroB3adNXbmdk6EpugPnl2JS+aCDGedCFczeYmqhQckLzvQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\2024CSStudy\\JSON Test\\JSON Test.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
